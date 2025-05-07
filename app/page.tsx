@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Hero from "./components/Home/Hero";
 import SearchInput from "./components/Home/SearchInput";
 import CarFilterOption from "./components/Home/CarFilterOption";
@@ -8,6 +8,10 @@ import CarList from "./components/Home/CarList";
 import ToastMsg from "./components/ToastMsg";
 import { BookingCreated } from "@/context/BookingCreated";
 import AboutShowroom from "./components/About/AboutShowroom";
+
+
+  
+  
 
 
 export default function Home() {
@@ -20,7 +24,12 @@ export default function Home() {
     { id: 6, name: "Toyota Fortuner", price: "45", image: "/fortuner.jpeg" },
     { id: 7, name: "Mercedes-Benz C-class", price: "80", image: "/C-class.png" },
     { id: 8, name: "BMW X3", price: "75", image: "/BMW_X3.png" },
-    { id: 9, name: "Toyota Innova", price: "40", image: "/innova.png" },
+    { id: 9, name: "Toyota Innova", price: "40", image: "/innova.png", damageReports: [
+      {
+        status: "In Progress",
+        description: "Rear bumper dent",
+        image: "/damage1.jpg"
+      }]  },
   ];
 
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
@@ -34,6 +43,10 @@ export default function Home() {
 
   const handlePriceOrderSelection = (order: string) => {
     setSelectedPriceOrder(order); // Set the selected price order based on user choice
+  };
+  
+  const handleFilter = (filters: any) => {
+    console.log(filters); // Apply filtering logic
   };
 
   return (
@@ -51,5 +64,6 @@ export default function Home() {
       </BookingCreated.Provider>
       <AboutShowroom/>
     </div>
+    
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Ensure you're using `next/navigation` if on the app directory
+import { useRouter } from "next/navigation";
 import CarCard from "../Home/CarCard";
 import Form from "./Form";
 import ToastMsg from "../ToastMsg";
@@ -15,7 +15,7 @@ interface BookingModelProps {
 }
 
 function BookingModel({ car }: BookingModelProps) {
-  const [isFormOpen, setIsFormOpen] = useState(true); // Track form visibility
+  const [isFormOpen, setIsFormOpen] = useState(true);
   const [toastMessage, setToastMessage] = useState("");
   const router = useRouter();
 
@@ -27,16 +27,18 @@ function BookingModel({ car }: BookingModelProps) {
       }
     }
 
-    setToastMessage("Booking Successful!");
-    setTimeout(() => setToastMessage(""), 3000);
+    setToastMessage(
+      "✅ Your booking has been successfully confirmed. Thank you for choosing our service. We will contact you shortly with the details."
+    );
 
-    setIsFormOpen(false); // Close the form
+    setTimeout(() => setToastMessage(""), 5000);
+    setIsFormOpen(false);
     return true;
   };
 
   const handleCancel = () => {
     setIsFormOpen(false);
-    router.push("/"); // Redirect user to the home page or car listing
+    router.push("/");
   };
 
   return (
@@ -55,18 +57,14 @@ function BookingModel({ car }: BookingModelProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
             <div>
               {car && (
-                <CarCard
-                  name={car.name}
-                  price={car.price}
-                  image={car.image}
-                />
+                <CarCard name={car.name} price={car.price} image={car.image} />
               )}
             </div>
             <div>
               <Form
                 onValidate={handleValidation}
-                onSubmit={(formData) => console.log(formData)} // Handle form submission
-                onCancel={handleCancel} // Pass the cancel handler
+                onSubmit={(formData) => console.log(formData)}
+                onCancel={handleCancel}
               />
             </div>
           </div>

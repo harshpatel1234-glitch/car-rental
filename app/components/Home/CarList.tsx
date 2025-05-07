@@ -24,8 +24,8 @@ function CarList({ carlists, selectedBrand, priceOrder }: any) {
   }
 
   const handleCarClick = (car: any) => {
-    setSelectedCar(car); // Set the selected car
-    (window as any).my_modal_4.showModal(); // Show the modal
+    setSelectedCar(car);
+    (window as any).my_modal_4.showModal();
   };
 
   return (
@@ -33,10 +33,30 @@ function CarList({ carlists, selectedBrand, priceOrder }: any) {
       {filteredCars.map((car: any) => (
         <div
           key={car.id}
-          onClick={() => handleCarClick(car)} // Pass the car to the click handler
-          className="cursor-pointer"
+          className="cursor-pointer border rounded-lg shadow-md p-4 bg-white"
+          onClick={() => handleCarClick(car)}
         >
           <CarCard name={car.name} price={car.price} image={car.image} />
+
+          {/* Damage Info */}
+          {car.damageReports && car.damageReports.length > 0 && (
+            <div className="mt-2 text-sm bg-red-100 p-2 rounded">
+              <h4 className="font-semibold text-red-600">Damage Reports:</h4>
+              {car.damageReports.map((report: any, index: number) => (
+                <div key={index} className="border-t border-gray-300 mt-1 pt-1">
+                  <p><strong>Status:</strong> {report.status}</p>
+                  <p><strong>Description:</strong> {report.description}</p>
+                  {report.image && (
+                    <img
+                      src={report.image}
+                      alt="damage"
+                      className="mt-1 rounded w-full h-32 object-cover"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ))}
 
