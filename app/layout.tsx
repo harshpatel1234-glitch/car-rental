@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Outfit } from 'next/font/google'
+import { Outfit } from 'next/font/google';
 import "./globals.css";
 import {
   ClerkProvider,
@@ -14,8 +14,7 @@ import Navbar from "./components/Navbar";
 
 const inter = Outfit({
   subsets: ['latin'],
-})
-
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,9 +29,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={inter.className}
-        >
+        <head>
+          <meta
+            name="google-site-verification"
+            content="LOO0jmi15OL4jhp4fk3UFOpRalTV7Q30ENUhx_Pnakc"
+          />
+        </head>
+        <body className={inter.className}>
           <SignedOut>
             <SignInButton>
               <div className="p-5">
@@ -47,7 +50,6 @@ export default function RootLayout({
           </SignedOut>
           <SignedIn>
             <Navbar />
-
             {children}
           </SignedIn>
         </body>
