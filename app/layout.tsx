@@ -34,6 +34,10 @@ export default function RootLayout({
             name="google-site-verification"
             content="LOO0jmi15OL4jhp4fk3UFOpRalTV7Q30ENUhx_Pnakc"
           />
+          <meta
+            name="robots"
+            content="index, follow"
+          />
         </head>
         <body className={inter.className}>
           <SignedOut>
