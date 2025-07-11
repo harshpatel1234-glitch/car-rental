@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://rentocruze.vercel.app/sitemap.xml
